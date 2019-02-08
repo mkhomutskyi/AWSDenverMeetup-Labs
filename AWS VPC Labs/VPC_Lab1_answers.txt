@@ -1,0 +1,45 @@
+Check Network ACL. Which NACL associated with VPC1Public-1a and VPC1Private-1a? What traffic are allowed with these rules?
+    NACLs having 2 inbound and 2 outbound rules:
+    100 ALL Traffic ALL ALL 0.0.0.0/0 ALLOW
+    * ALL Traffic ALL ALL 0.0.0.0/0 DENY
+    Rule number 100 allow traffic from all sources (0.0.0.0/0) with all protocols and all ports.
+    Each network ACL also includes a rule whose rule number is an asterisk. This rule ensures that if a packet doesn't match any of the other numbered rules, it's denied. You can't modify or remove this rule.
+    Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied regardless of any higher-numbered rule that may contradict it.
+    https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html
+
+What is 0.0.0.0/0 in terms of networking?
+    0.0.0.0/0 represents all possible IPv4 addresses. We can use it as default traffic route or as all IP address (public access) in SG.
+
+What is "Request Spot instances"? What are the use cases of Spot instances?
+    A Spot Instance is an unused EC2 instance that is available for less than the On-Demand price. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly.
+    Spot Instances are a cost-effective choice if you can be flexible about when your applications run and if your applications can be interrupted. For example, Spot Instances are well-suited for data analysis, batch jobs, background processing, and optional tasks.
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html
+
+What is the Placement group? What are the use cases? Can you span placement group across several AZs?
+    Amazon EC2 cluster placement group functionality allows users to group Cluster Compute Instances in clusters – allowing applications to get the low-latency network performance necessary for tightly-coupled node-to-node communication typical of many HPC applications. Cluster Compute Instances also provide significantly increased network throughput both within the Amazon EC2 environment and to the Internet. As a result, these instances are also well suited for customer applications that need to perform network-intensive operations.
+    Spread Placement Groups - can span multiple Availability Zones.
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html
+
+What is the termination protection and use case?
+    Termination protection prevents an instance from being accidentally terminated by requiring that you disable the protection before terminating the instance.
+    It helps to prevent termination of critical instances. Good example Domain Controllers. 
+    https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/terminating-instances.html#Using_ChangingDisableAPITermination   
+
+What is the difference between CloudWatch monitoring and detailed monitoring?
+    By default, your instance is enabled for basic monitoring. You can optionally enable detailed monitoring. After you enable detailed monitoring, the Amazon EC2 console displays monitoring graphs with a 1-minute period for the instance. 
+    Basic monitoring data available within 5 minutes.
+    Detailed monitoring data available within 1 minutes.
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html
+
+Which tenancy options available for EC2?
+    default - Your instance runs on shared hardware.
+    dedicated - Your instance runs on single-tenant hardware.
+    host - 	Your instance runs on a Dedicated Host, which is an isolated server with configurations that you can control.
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html
+
+What happen? Why we used sudo?
+    We installed updates on Amazon Linux 2 instance.
+    sudo stands for “super user do!” . I order to install updates we have to elevate privileges to super user level.
+
+What happen?
+    We shutted down instance.
